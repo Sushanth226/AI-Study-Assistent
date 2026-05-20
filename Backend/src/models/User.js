@@ -1,4 +1,5 @@
 const mongoose=require("mongoose");
+const bcrypt=require("bcrypt");
 
 const userSchema=new mongoose.Schema({
     email:{
@@ -24,15 +25,14 @@ const userSchema=new mongoose.Schema({
     }
 )
 
-userSchema.pre("save",async()=>{
+userSchema.pre("save", async function() {
   if(!this.isModified('password')){
     return;
   }
    const salt=await bcrypt.genSalt(10);
   this.password=await bcrypt.hash(this.password,salt);
-
 })
-userSchema.method.comparePassword=async function(userPassword){
+userSchema.methods.comparePassword=async function(userPassword){
     return bcrypt.compare(this.password,userPassword);
 }
 
