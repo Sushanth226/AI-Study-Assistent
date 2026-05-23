@@ -1,6 +1,6 @@
 const jwt =require("jsonwebtoken");
 const User=require("../models/User");
-
+const BlackList=require("../models/BlackListing");
 async function register(req,res){
 
   const{name,email,password}=req.body;
@@ -13,7 +13,7 @@ async function register(req,res){
   const token=jwt.sign(
     {userID:user._id},
     process.env.JWT_SECRET_KEY,
-    {expireIn:"2h"}
+    {expiresIn:"2h"}
   );
   console.log("token");
   res.cookie("token",token);
@@ -23,21 +23,21 @@ async function register(req,res){
   }
 }
 
-async function login(res,req){
+async function login(req,res){
    const {email,password}=req.body;
    try{
      const user=await User.findOne({email:email}).select("+password");
      if(!user){
         return res.status(400).json("The user does not exist");
      }
-     const isMatch=user.comparePassword(password);
+     const isMatch=await user.comparePassword(password);
      if(!isMatch){
         return res.status(400).json("The password (or) email is wrong"); 
      }
      const token=jwt.sign(
     {userID:user._id},
     process.env.JWT_SECRET_KEY,
-    {expireIn:"2h"}
+    {expiresIn:"2h"}
   );
   console.log("token");
   res.cookie("token",token);
@@ -47,4 +47,18 @@ async function login(res,req){
     return res.status(400).json(error);
    }
 }
-module.exports={register,login};
+
+async function logout(req,res){
+  const token=req.cookies.token;
+  if(!token){
+      return res.status(200).json("Logged out as token is not present in the cookie");
+  }
+  await BlackList.create({
+    token:token
+  });
+
+  res.clearCookie("token");
+  return res.status(200).json("Logout as the token is added to the Black List");
+
+}
+module.exports={register,login,logout};
