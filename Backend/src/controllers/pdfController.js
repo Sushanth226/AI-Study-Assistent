@@ -60,7 +60,10 @@ const uploadPdf = async (req, res) => {
                     result.public_id,
 
                 fileSize:
-                    req.file.size
+                    req.file.size,
+
+                owner:
+                    req.user._id
 
             });
 
@@ -90,7 +93,7 @@ const getAllPdfs = async (req, res) => {
 
     try {
 
-        const pdfs = await Pdf.find();
+        const pdfs = await Pdf.find({ owner: req.user._id });
 
         res.json(pdfs);
 
@@ -109,7 +112,7 @@ const deletePdf = async (req, res) => {
     try {
 
         const pdf =
-            await Pdf.findById(req.params.id);
+            await Pdf.findOne({ _id: req.params.id, owner: req.user._id });
 
         if (!pdf) {
 
