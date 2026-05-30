@@ -13,15 +13,18 @@ function Register(){
             alert("The Name Or Email Or Password is not given");
         }else{
             try{
-                await axios.post("http://localhost:5000/auth/registor",{
+                await axios.post("http://localhost:5000/auth/register",{
                     name,
                     email,
                     password
-                })
+                }, { withCredentials: true })
                 console.log("Registration Completed")
                 navigate("/dashboard");
             }catch(error){
                 console.log(error);
+                const resData = error?.response?.data;
+                const errorMsg = resData?.message || resData?.error || (typeof resData === 'string' ? resData : null) || error.message || "Registration failed";
+                alert(errorMsg);
             }
         }
         

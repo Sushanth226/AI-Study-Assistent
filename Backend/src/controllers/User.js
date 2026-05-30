@@ -4,6 +4,7 @@ const BlackList=require("../models/BlackListing");
 async function register(req,res){
 
   const{name,email,password}=req.body;
+  console.log(req.body);
   try{
   const user=await User.create({
     name:name,
@@ -17,9 +18,11 @@ async function register(req,res){
   );
   console.log("token");
   res.cookie("token",token);
-  return res.status(200).json(`Token created:${token}`);
+  return res.status(201).json(`Token created:${token}`);
   }catch(error){
-    return res.status(400).json(error);
+    return res.status(500).json({
+    error:error.message
+      });
   }
 }
 
@@ -28,11 +31,11 @@ async function login(req,res){
    try{
      const user=await User.findOne({email:email}).select("+password");
      if(!user){
-        return res.status(400).json("The user does not exist");
+        return res.status(401).json("The user does not exist");
      }
      const isMatch=await user.comparePassword(password);
      if(!isMatch){
-        return res.status(400).json("The password (or) email is wrong"); 
+        return res.status(401).json("The password (or) email is wrong"); 
      }
      const token=jwt.sign(
     {userID:user._id},
@@ -40,11 +43,11 @@ async function login(req,res){
     {expiresIn:"2h"}
   );
   console.log("token");
-  res.cookie("token",token);
+   res.cookie("token",token);
   return res.status(200).json(`Token created:${token}`);
  
    }catch(error){
-    return res.status(400).json(error);
+    return res.status(500).json(error);
    }
 }
 

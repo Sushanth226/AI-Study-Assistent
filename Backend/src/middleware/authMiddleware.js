@@ -6,13 +6,13 @@ async function authUserMiddleware(req,res,next){
  try {
      const token=req.cookies.token;
      if(!token){
-        return res.status(400).json("The token does not exist");
+        return res.status(401).json("The token does not exist");
      }
      const checkBlackList=await BlackList.findOne({
         token:token
      });
      if(checkBlackList){
-        return res.status(400).json("The token is in the Black List");
+        return res.status(401).json("The token is in the Black List");
      }
      const decode=jwt.verify(token,process.env.JWT_SECRET_KEY);
      const user=await User.findById(decode.userID);

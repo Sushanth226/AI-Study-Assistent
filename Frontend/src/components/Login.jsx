@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Login(){
+    const navigate = useNavigate();
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const sendDetails=async(e)=>{
@@ -14,10 +15,15 @@ function Login(){
                 await axios.post("http://localhost:5000/auth/login",{
                     email,
                     password
-                })
+                }, { withCredentials: true })
                 console.log("Login Completed")
+                // Need to import useNavigate for this
+                navigate("/dashboard");
             }catch(error){
                 console.log(error);
+                const resData = error?.response?.data;
+                const errorMsg = resData?.message || resData?.error || (typeof resData === 'string' ? resData : null) || error.message || "Login failed";
+                alert(errorMsg);
             }
         }
         
