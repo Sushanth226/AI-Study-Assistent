@@ -1,7 +1,8 @@
 import {useState} from "react";
 import axios from "axios";
 import List from "./List";
-
+import {Link} from "react-router-dom";
+import Logout from "./Logout";
 function Dashboard(){
     const [pdf,setPdf]=useState(null);
     
@@ -40,7 +41,10 @@ function Dashboard(){
         <>
         <h1>DashBoard</h1>
         <div className="logout">
-            
+          <Logout/>
+        </div>
+        <div className="logout">
+
         </div>
         <div className="pdfUpload">
             <input type="file" accept="application/pdf" placeholder="Upload a pdf" onChange={uploadPdf}/>
