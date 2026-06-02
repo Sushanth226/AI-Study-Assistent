@@ -1,7 +1,6 @@
 import {useState} from "react";
 import axios from "axios";
 import List from "./List";
-import {Link} from "react-router-dom";
 import Logout from "./Logout";
 function Dashboard(){
     const [pdf,setPdf]=useState(null);

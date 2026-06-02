@@ -3,7 +3,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
-import Logout from "./components/Logout";
+import PdfQuery from "./components/PdfQuery";
 function App(){
    return (
    <>
@@ -13,7 +13,7 @@ function App(){
     <Route path="/register" element={<Register/>}/>
     <Route path="/dashboard" element={<Dashboard/>}/>
     {/* <Route path="/logout" element={<Logout/>}/> */}
-    <Route path="/pdfQuery/:id" element={}/>
+    <Route path="/pdfQuery/:id" element={<PdfQuery/>}/>
    </Routes>
    </>
 

@@ -1,16 +1,16 @@
-import { useParams, useState } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
 
-function PdfQuery({ pdfurl, pdfTitle }) { 
-  const id = useParams();
+function PdfQuery() {
+  const location=useLocation();
+  const pdfUrl=location.state.pdfUrl;
+  const pdfTitle=location.state.pdfTitle; 
   const [result, setResult] = useState("");
 
   const Summarize = async () => {
     try {
-        const formData = new FormData();
-        formData.append("pdfUrl", pdfurl);
-        
-        const res = await axios.post("http://localhost:5000/assistantPractice/summarize/", formData, { withCredentials: true });
+        const res = await axios.post("http://localhost:5000/assistantPractice/summarize/", { pdfUrl }, { withCredentials: true });
         
         setResult(res.data.summary); 
     } catch (error) {
@@ -26,10 +26,7 @@ function PdfQuery({ pdfurl, pdfTitle }) {
 
   const generateQuiz = async () => {
     try {
-        const formData = new FormData();
-        formData.append("pdfUrl", pdfurl);
-        
-        const res = await axios.post("http://localhost:5000/assistantPractice/quiz/", formData, { withCredentials: true });
+        const res = await axios.post("http://localhost:5000/assistantPractice/quiz/", { pdfUrl }, { withCredentials: true });
         setResult(res.data.quiz);
     } catch (error) {
         console.error("Quiz Error:", error);

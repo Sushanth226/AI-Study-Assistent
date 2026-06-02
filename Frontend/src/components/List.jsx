@@ -1,9 +1,10 @@
 import {useEffect,useState} from "react";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
 function List(){
    const [pdfsLists,setPdfsList]=useState([]);
-   
+   const navigate=useNavigate();
    const getPdfs=async()=>await axios.get("http://localhost:5000/pdf/getPdfs",{ withCredentials: true });
 
    useEffect(()=>{
@@ -17,13 +18,20 @@ function List(){
       };
       fetchPdfs();
    },[pdfsLists]);
+   const PdfQuery=(pdf)=>{
+      navigate(`/pdfQuery/${pdf._id || pdf.id || 'unknown'}`,{
+      state:{
+          pdfUrl:pdf.pdfUrl,
+          pdfTitle:pdf.title
+      }})
+   }
 
    return (
     <>
     <div className="pdfList">   
         <ul>{
             pdfsLists.map((pdf, index)=>(
-               <li key={pdf._id || index}>{pdf.title || "Untitled PDF"}</li> 
+               <li key={pdf._id || index}>{pdf.title || "Untitled PDF"} <button onClick={() => PdfQuery(pdf)}>Learn</button></li> 
             ))
         }
         </ul>
