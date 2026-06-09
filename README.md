@@ -1026,16 +1026,6 @@ Contributions are welcome! Please follow these steps:
 - Update README if needed
 - Be respectful and constructive
 
----
-
-## 📝 License
-
-This project is licensed under the **MIT License** - see the LICENSE file for details.
-
-MIT License - Free for personal and commercial use.
-
----
-
 ## 👨‍💻 Author
 
 **Sushanth Sourya**
