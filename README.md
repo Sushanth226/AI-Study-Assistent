@@ -1,269 +1,518 @@
 # 🤖 AI Study Assistant
 
-> Interactive learning platform powered by AI, LangChain, and Gemini 2.5 Flash for intelligent content summarization, Q&A, PDF processing, and personalized learning paths.
+> An intelligent learning platform powered by Gemini 2.5 Flash, LangChain, and advanced RAG for AI-driven document understanding, semantic search, and personalized learning experiences.
 
 <div align="center">
 
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-1C1C1C?style=flat-square&logo=chainlink&logoColor=white)
-![Gemini](https://img.shields.io/badge/Gemini_2.5-8B7FFF?style=flat-square&logo=google&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-13AA52?style=flat-square&logo=mongodb&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Active%20Development-brightgreen?style=flat-square)
+[![React](https://img.shields.io/badge/React-19.2.6-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
+[![Node.js](https://img.shields.io/badge/Node.js-Latest-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
+[![MongoDB](https://img.shields.io/badge/MongoDB-9.6.2-13AA52?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com)
+[![LangChain](https://img.shields.io/badge/LangChain-RAG-1C1C1C?style=flat-square&logo=chainlink&logoColor=white)](https://js.langchain.com)
+[![Gemini](https://img.shields.io/badge/Gemini_2.5-Document_AI-8B7FFF?style=flat-square&logo=google&logoColor=white)](https://ai.google.dev)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active%20Development-brightgreen?style=flat-square)](https://github.com/Sushanth226/AI-Study-Assistent)
 
 </div>
 
 ---
 
-## 📖 **Project Overview**
+## 📋 Table of Contents
 
-This project combines **modern web technologies** with **cutting-edge AI** to create an intelligent learning platform. It features advanced PDF processing, AI-powered summarization, and interactive learning tools—making it a powerful exploration of LangChain, Gemini AI, OpenAI APIs, and full-stack MERN development.
-
-### **Why This Project Matters**
-- 🔥 **Hot Technology**: Gemini 2.5 Flash + OpenAI + LangChain
-- 📄 **PDF Intelligence**: Native document processing with Gemini's Document API
-- 🎓 **Real Problem**: Making education more personalized with AI
-- 🚀 **Learning Opportunity**: Integrating AI with full-stack web development
-- 💡 **Portfolio Strength**: Shows forward-thinking developer mindset
-- 🌟 **Unique Combination**: Web Dev + Advanced AI Integration
-
----
-
-## 🎯 **Core Features**
-
-### **1. 📄 Smart PDF Processing** ⭐ *NEW*
-- Upload PDF documents directly
-- AI extracts and processes PDF content using Gemini 2.5 Flash's Document Intelligence API
-- Generate summaries from PDF content
-- Create AI-powered quizzes from PDF material
-- Track uploaded PDFs with user ownership
-
-```
-User Uploads PDF
-     ↓
-Cloudinary Storage + Local Processing
-     ↓
-Gemini 2.5 Flash Document API: Extract content
-     ↓
-LangChain Processing: Understand context
-     ↓
-Output: Summary, Quizzes, Key Points
-```
-
-### **2. Smart Content Summarization**
-- Upload or paste study material
-- AI generates concise summaries
-- Multiple summary lengths (short, medium, long)
-- Preserves key concepts and information
-- Support for both text and PDF documents
-
-```
-User Input: Long textbook chapter / PDF
-         ↓
-LangChain Processing: Extract key concepts
-         ↓
-OpenAI API: Generate summary
-         ↓
-Output: Clear, concise summary
-```
-
-### **3. Intelligent Q&A System**
-- Ask questions about any topic
-- AI provides detailed, contextual answers
-- Sources and explanations included
-- Multi-subject support (Math, Science, History, Languages, etc.)
-
-```
-User Question: "What is photosynthesis?"
-         ↓
-LangChain Chain: Format and process question
-         ↓
-OpenAI API: Generate detailed answer
-         ↓
-Output: Educational explanation with examples
-```
-
-### **4. Personalized Learning Paths**
-- Track user study progress
-- AI recommends next topics
-- Adaptive difficulty levels
-- Learning history and analytics
-
-### **5. User Authentication** ⭐ *NEW*
-- Secure login and registration system
-- JWT token-based authentication
-- Token blacklisting for logout functionality
-- Protected routes and APIs
-
-### **6. Multi-Subject Support**
-- Mathematics (Algebra, Calculus, Geometry)
-- Science (Physics, Chemistry, Biology)
-- Languages (English, Spanish, French, etc.)
-- History and Social Studies
-- Competitive Exam Prep
+- [Overview](#overview)
+- [Problem Statement](#problem-statement)
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+- [RAG Pipeline](#rag-pipeline-explained)
+- [System Architecture](#system-architecture)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Environment Variables](#environment-variables)
+- [API Documentation](#api-documentation)
+- [Challenges & Solutions](#challenges--solutions)
+- [Future Enhancements](#future-enhancements)
+- [Contributing](#contributing)
+- [Author](#author)
 
 ---
 
-## 🛠️ **Technology Stack**
+## 🎯 Overview
 
-### **Frontend**
-| Technology | Purpose |
-|-----------|---------|
-| **React.js** | Interactive UI components |
-| **Vite** | Fast build tool and dev server |
-| **React Router** | Client-side routing |
-| **JavaScript** | Client-side logic |
-| **HTML5/CSS3** | Structure and styling |
-| **Bootstrap/Tailwind** | Responsive design |
-| **Axios** | API communication |
+**AI Study Assistant** is a full-stack intelligent learning platform that leverages cutting-edge AI technologies to transform how students learn and process educational content. The platform combines modern web development with advanced AI/ML capabilities to provide:
 
-### **Backend**
-| Technology | Purpose |
-|-----------|---------|
-| **Node.js** | Server runtime |
-| **Express.js** | API framework |
-| **MongoDB** | User data storage |
-| **Mongoose** | Database modeling |
-| **Multer** | File upload handling |
-| **CORS** | Cross-origin requests |
+- **🔍 Semantic Understanding**: Uses vector embeddings to understand content semantically
+- **📚 Context-Aware Responses**: Implements RAG (Retrieval-Augmented Generation) for accurate answers
+- **⚡ Real-time Processing**: Instant PDF upload and processing with Gemini 2.5 Flash
+- **🎓 Personalized Learning**: Adapted to individual learning pace and style
+- **🔐 Secure & Scalable**: JWT authentication with Cloudinary cloud storage
 
-### **AI/ML & Document Processing**
-| Technology | Purpose |
-|-----------|---------|
-| **Gemini 2.5 Flash** | Advanced PDF processing & Document Intelligence |
-| **LangChain** | AI orchestration framework |
-| **OpenAI API** | GPT language models |
-| **Vector Store** | Semantic search |
-| **RAG** | Retrieval Augmented Generation |
+### Why AI Study Assistant?
 
-### **Cloud Services**
-| Technology | Purpose |
-|-----------|---------|
-| **Cloudinary** | PDF and document storage |
-| **Google Generative AI** | Gemini API integration |
+Traditional learning platforms lack:
+- ❌ Understanding of document context
+- ❌ Semantic search capabilities
+- ❌ AI-powered personalization
+- ❌ Intelligent document processing
+
+**AI Study Assistant solves these with:**
+- ✅ Advanced RAG pipeline for context understanding
+- ✅ Vector embeddings for semantic similarity
+- ✅ Gemini 2.5 Flash for native PDF intelligence
+- ✅ LangChain orchestration for reliable AI chains
+- ✅ MongoDB for scalable data management
 
 ---
 
-## 📁 **Project Structure**
+## 🔴 Problem Statement
+
+### Current Challenges in Education
+
+1. **Information Overload**: Students struggle with massive volumes of study material
+2. **Passive Learning**: Traditional resources don't provide interactive, personalized support
+3. **PDF Processing Limitations**: Most platforms can't handle scanned or image-heavy PDFs
+4. **Lack of Context Understanding**: Generic search doesn't understand document semantics
+5. **Time Consumption**: Manual summarization and organization takes hours
+
+### Our Solution
+
+AI Study Assistant provides:
+- **Instant Summarization**: AI-powered summaries in multiple lengths
+- **Smart Q&A**: Context-aware answers using RAG
+- **Semantic Search**: Find relevant content using meaning, not just keywords
+- **Interactive Learning**: Quiz generation and progress tracking
+- **Scalable Architecture**: Handle any document size efficiently
+
+---
+
+## ✨ Key Features
+
+### 1. 📄 Smart PDF Upload & Processing
+
+Upload any PDF document and let Gemini 2.5 Flash intelligently process it.
 
 ```
-AI-Study-Assistant/
+User Upload → Cloudinary Storage → Gemini Text Extraction
+    ↓
+Document Chunking → Vector Embedding → Semantic Search Ready
+```
+
+**Capabilities:**
+- Handles PDFs up to 20MB
+- Extracts text from scanned documents
+- Creates searchable embeddings
+- Owner-based access control
+
+**Routes:**
+```
+POST   /pdf/upload    - Upload new PDF
+GET    /pdf/getPdfs   - Retrieve user's PDFs
+DELETE /pdf/deletePdf/:id - Remove PDF
+```
+
+---
+
+### 2. 🧠 RAG-Powered Q&A System
+
+Ask questions and get contextually accurate answers powered by vector similarity search.
+
+**How It Works:**
+1. Convert question to embeddings
+2. Search vector store for relevant chunks
+3. Augment prompt with retrieved context
+4. Generate answer using Gemini
+5. Return contextual response
+
+**Key Advantages:**
+- Reduces hallucinations through document grounding
+- Provides source citations
+- Context-aware responses
+- Multi-turn conversation support
+
+---
+
+### 3. 📝 AI-Powered Summarization
+
+Transform lengthy documents into concise, structured summaries.
+
+**Two-Stage Summarization:**
+- **Stage 1**: Summarize individual chunks
+- **Stage 2**: Combine summaries into cohesive final summary
+
+**Supported Lengths:**
+- Short (20-30% of original)
+- Medium (40-50% of original)
+- Long (70-80% of original)
+
+---
+
+### 4. 📋 Intelligent Quiz Generation
+
+Automatically generate quiz questions from PDF content.
+
+**Features:**
+- Multiple question types (MCQ, short answer, essay)
+- Difficulty levels (Easy, Medium, Hard)
+- Customizable question count
+- Instant feedback system
+
+---
+
+### 5. 🔐 Secure Authentication
+
+JWT-based authentication with token blacklisting for secure logout.
+
+**Security Implementation:**
+- Bcrypt password hashing (10 salt rounds)
+- 2-hour JWT expiration
+- Token blacklist on logout
+- HTTP-only cookies
+- CORS protection
+
+```
+Registration → Hash Password → Create User → Issue JWT → Secure Storage
+```
+
+---
+
+### 6. 🎯 Personalized Learning Paths
+
+Track progress and receive adaptive learning recommendations.
+
+**Tracking:**
+- Questions attempted
+- Success rate by subject
+- Time spent on topics
+- Concepts mastered vs. weak areas
+- Progress visualization
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend
+
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| **React.js** | 19.2.6 | UI Framework |
+| **Vite** | 8.0.12 | Build tool & dev server |
+| **React Router** | 7.15.1 | Client-side routing |
+| **Axios** | 1.16.1 | HTTP client |
+| **JavaScript (ES6+)** | - | Frontend logic |
+
+### Backend
+
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| **Node.js** | 14+ | Runtime environment |
+| **Express.js** | Latest | API framework |
+| **MongoDB** | 9.6.2 | NoSQL database |
+| **Mongoose** | 9.6.2 | ODM for MongoDB |
+| **Multer** | 2.1.1 | File upload handling |
+| **JWT** | 9.0.3 | Authentication |
+| **Bcrypt** | 6.0.0 | Password hashing |
+
+### AI & RAG Pipeline
+
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| **Gemini 2.5 Flash** | Latest | Document understanding & AI responses |
+| **LangChain** | 1.4.2 | AI orchestration framework |
+| **@langchain/textsplitters** | 1.0.1 | Document chunking |
+| **@langchain/google-genai** | 2.1.31 | Gemini integration |
+| **@langchain/core** | 1.1.48 | LangChain core |
+
+### Cloud & Storage
+
+| Service | Purpose |
+|---------|---------|
+| **Cloudinary** | PDF file storage & CDN |
+| **MongoDB Atlas** | Cloud database |
+| **Google Generative AI** | Gemini API access |
+
+### Development Tools
+
+| Tool | Version | Purpose |
+|-----|---------|---------|
+| **Nodemon** | 3.1.14 | Auto-reload development |
+| **ESLint** | 10.3.0 | Code quality |
+| **npm** | Latest | Package management |
+
+---
+
+## 🧬 RAG Pipeline Explained
+
+### What is RAG?
+
+**RAG (Retrieval-Augmented Generation)** combines document retrieval with AI generation to provide accurate, contextual answers grounded in your documents.
+
+### Pipeline Steps
+
+#### **Step 1: PDF Upload & Storage**
+```
+User uploads PDF
+    ↓
+File validation (type, size)
+    ↓
+Stream to Cloudinary
+    ↓
+Store metadata in MongoDB
+```
+
+#### **Step 2: Text Extraction**
+```
+Download PDF from Cloudinary
+    ↓
+Gemini 2.5 Flash processes PDF
+    ↓
+Extract all text content
+    ↓
+Clean and normalize text
+```
+
+**Implementation:**
+```javascript
+const extractText = async (buffer) => {
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  
+  const result = await model.generateContent([
+    {
+      inlineData: {
+        data: Buffer.from(buffer).toString("base64"),
+        mimeType: "application/pdf"
+      }
+    },
+    "Transcribe all text from this document exactly"
+  ]);
+  
+  return result.response.text();
+};
+```
+
+#### **Step 3: Document Chunking**
+```
+Split extracted text into manageable chunks
+    ↓
+Chunk size: 1000 characters
+    ↓
+Overlap: 200 characters (context preservation)
+    ↓
+Create Document objects
+```
+
+**Configuration:**
+```javascript
+const splitter = new RecursiveCharacterTextSplitter({
+  chunkSize: 1000,
+  chunkOverlap: 200,
+});
+
+const chunks = await splitter.createDocuments([text]);
+```
+
+**Why Chunking?**
+- LLMs have context window limits
+- Smaller chunks = better semantic relevance
+- Overlap preserves context across chunks
+- Enables efficient similarity search
+
+#### **Step 4: Vector Embedding Generation**
+```
+For each chunk:
+    ↓
+Convert text to numerical vector (embedding)
+    ↓
+Store in vector store
+    ↓
+Enable semantic similarity comparison
+```
+
+#### **Step 5: Similarity Search for Q&A**
+```
+User asks question
+    ↓
+Convert question to embedding
+    ↓
+Find similar chunks using cosine similarity
+    ↓
+Retrieve top-3 most relevant chunks
+    ↓
+Score: 0-1 (higher = more relevant)
+```
+
+#### **Step 6: Context Augmentation & Response**
+```
+Retrieved chunks + User question
+    ↓
+Build augmented prompt with context
+    ↓
+Pass to Gemini API
+    ↓
+Generate contextual answer
+    ↓
+Return with source citations
+```
+
+### Why RAG Over Direct LLM?
+
+| Aspect | Direct LLM | RAG |
+|--------|-----------|-----|
+| **Hallucinations** | ❌ High risk | ✅ Grounded in docs |
+| **Outdated Info** | ❌ Limited knowledge | ✅ Uses current docs |
+| **Citations** | ❌ None | ✅ Source tracking |
+| **Accuracy** | ❌ ~70% | ✅ ~95% |
+| **Cost** | ❌ Full API calls | ✅ Optimized queries |
+
+---
+
+## 🏗️ System Architecture
+
+### Components
+
+```
+Frontend (React) → API (Express) → Services → AI & Storage
+    ↓                  ↓              ↓          ↓
+UI Components    Routes/Auth    Business     Gemini
+React Router     Middleware     Logic        MongoDB
+State Mgmt       Controllers    Processors   Cloudinary
+```
+
+### Data Flow
+
+```
+1. User uploads PDF
+   ↓ (Multer validates)
+2. Stream to Cloudinary
+   ↓ (Get secure URL)
+3. Extract text with Gemini
+   ↓ (PDF → Text)
+4. Chunk text (1000 char chunks)
+   ↓ (Manage context)
+5. Generate embeddings
+   ↓ (Create vectors)
+6. Store in vector DB
+   ↓ (Enable search)
+7. Save metadata to MongoDB
+   ↓ (Track ownership)
+8. Return to user
+```
+
+---
+
+## 📁 Project Structure
+
+```
+AI-Study-Assistent/
 │
 ├── Frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Navbar.js
-│   │   │   ├── Dashboard.js
-│   │   │   ├── Summarizer.js
-│   │   │   ├── QASystem.js
-│   │   │   ├── LearningPath.js
-│   │   │   ├── Analytics.js
-│   │   │   ├── PdfQuery.js          ⭐ NEW
-│   │   │   ├── Login.js
-│   │   │   ├── Register.js
-│   │   │   ├── Logout.js
-│   │   │   └── List.js              ⭐ NEW
-│   │   │
-│   │   ├── pages/
-│   │   │   ├── Home.js
-│   │   │   ├── Study.js
-│   │   │   ├── Profile.js
-│   │   │   └── Settings.js
-│   │   │
-│   │   ├── services/
-│   │   │   └── api.js
-│   │   │
-│   │   └── App.js
-│   │
+│   │   │   ├── Home.jsx              # Landing page
+│   │   │   ├── Login.jsx             # Authentication
+│   │   │   ├── Register.jsx          # User registration
+│   │   │   ├── Dashboard.jsx         # Main hub
+│   │   │   ├── PdfQuery.jsx          # PDF interaction
+│   │   │   ├── List.jsx              # PDF list
+│   │   │   ├── Logout.jsx            # Logout handler
+│   │   │   └── Navbar.jsx            # Navigation
+│   │   ├── styles/
+│   │   │   ├── App.css
+│   │   │   └── index.css
+│   │   ├── App.jsx                   # Root component
+│   │   ├── main.jsx                  # Entry point
+│   │   └── index.css
 │   ├── vite.config.js
-│   └── package.json
+│   ├── package.json
+│   └── index.html
 │
 ├── Backend/
-│   ├── routes/
-│   │   ├── auth.js
-│   │   ├── summarize.js
-│   │   ├── qa.js
-│   │   ├── progress.js
-│   │   └── pdf.js                   ⭐ NEW
+│   ├── src/
+│   │   ├── routers/
+│   │   │   ├── auth.js               # Auth routes
+│   │   │   ├── pdf.js                # PDF routes
+│   │   │   └── assistantPractice.js  # Q&A routes
+│   │   │
+│   │   ├── controllers/
+│   │   │   ├── User.js               # Auth logic
+│   │   │   ├── pdfController.js      # PDF operations
+│   │   │   ├── summarizeController.js # Summarization
+│   │   │   └── quizController.js     # Quiz generation
+│   │   │
+│   │   ├── models/
+│   │   │   ├── User.js               # User schema
+│   │   │   ├── pdf.js                # PDF metadata
+│   │   │   └── BlackListing.js       # Token blacklist
+│   │   │
+│   │   ├── middleware/
+│   │   │   ├── authMiddleware.js     # JWT verification
+│   │   │   └── multerMiddleware.js   # File upload
+│   │   │
+│   │   ├── services/
+│   │   │   ├── pdfProcessing.js      # PDF processing
+│   │   │   ├── summarizeService.js   # Summarization
+│   │   │   ├── quizService.js        # Quiz generation
+│   │   │   └── embeddingAi.js        # Embeddings
+│   │   │
+│   │   ├── util/
+│   │   │   ├── extractText.js        # Gemini text extraction
+│   │   │   └── chunkText.js          # Document chunking
+│   │   │
+│   │   ├── dataBase/
+│   │   │   ├── config.js             # MongoDB connection
+│   │   │   └── cloudinary.js         # Cloudinary setup
+│   │   │
+│   │   ├── app.js                    # Express config
+│   │   └── server.js                 # Server entry
 │   │
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── summarizeController.js
-│   │   ├── qaController.js
-│   │   ├── progressController.js
-│   │   └── pdfController.js         ⭐ NEW
-│   │
-│   ├── models/
-│   │   ├── User.js
-│   │   ├── StudySession.js
-│   │   ├── Progress.js
-│   │   └── PDF.js                   ⭐ NEW
-│   │
-│   ├── middleware/
-│   │   ├── auth.js
-│   │   └── errorHandler.js
-│   │
-│   ├── services/
-│   │   ├── langchainService.js
-│   │   ├── openaiService.js
-│   │   ├── geminiService.js         ⭐ NEW
-│   │   └── extractText.js           ⭐ NEW
-│   │
-│   ├── config/
-│   │   └── database.js
-│   │
-│   └── index.js
+│   ├── package.json
+│   └── .env.example
 │
-└── README.md
+├── README.md
+├── .gitignore
+└── package.json (root)
 ```
 
 ---
 
-## 🚀 **Getting Started**
+## 🚀 Installation
 
-### **Prerequisites**
-- Node.js v14+ installed
-- OpenAI API key (get from [platform.openai.com](https://platform.openai.com))
-- Google Generative AI API key (get from [ai.google.dev](https://ai.google.dev))
-- MongoDB Atlas account
-- Cloudinary account (for PDF storage)
-- npm or yarn
+### Prerequisites
 
-### **Installation**
+- **Node.js** v14 or higher
+- **npm** or **yarn**
+- **MongoDB Atlas** account (free tier available)
+- **Cloudinary** account (free tier available)
+- **Google Generative AI API key** (free)
+- **Git**
 
-#### **Step 1: Clone Repository**
+### Step 1: Clone Repository
+
 ```bash
 git clone https://github.com/Sushanth226/AI-Study-Assistent.git
 cd AI-Study-Assistent
 ```
 
-#### **Step 2: Backend Setup**
+### Step 2: Backend Setup
 
 ```bash
 cd Backend
 npm install
 ```
 
-Create `.env` file:
+Create `.env` file in `Backend/`:
+
 ```env
 # MongoDB
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/ai_study?retryWrites=true&w=majority
+MONGO_DB_URL=mongodb+srv://username:password@cluster.mongodb.net/ai_study_assistant?retryWrites=true&w=majority
 
 # Server
 PORT=5000
 NODE_ENV=development
 
-# OpenAI
-OPENAI_API_KEY=sk-your-api-key-here
+# JWT
+JWT_SECRET_KEY=your_super_secret_jwt_key_min_32_chars_long
 
 # Google Generative AI (Gemini)
-GOOGLE_API_KEY=your-google-api-key-here
-
-# JWT
-JWT_SECRET=your_super_secret_jwt_key_min_32_chars_long
-
-# LangChain
-LANGCHAIN_API_KEY=your_langchain_key_if_using_hosted
+GEMINI_API_KEY=your_google_api_key_here
 
 # Cloudinary
 CLOUDINARY_NAME=your_cloudinary_name
@@ -271,710 +520,551 @@ CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
-Start backend:
+**Start Backend Server:**
+
 ```bash
-npm start
+npm run dev
 # Backend runs on http://localhost:5000
 ```
 
-#### **Step 3: Frontend Setup**
+### Step 3: Frontend Setup
 
 ```bash
 cd ../Frontend
 npm install
 ```
 
-Create `.env` file:
+Create `.env` file in `Frontend/`:
+
 ```env
-REACT_APP_API_URL=http://localhost:5000
-REACT_APP_OPENAI_KEY=sk-your-api-key
 VITE_API_URL=http://localhost:5000
 ```
 
-Start frontend:
+**Start Frontend Development Server:**
+
 ```bash
 npm run dev
-# Frontend opens on http://localhost:5173 (Vite default)
+# Frontend opens on http://localhost:5173
+```
+
+### Step 4: Access Application
+
+Open your browser and navigate to:
+
+```
+http://localhost:5173
 ```
 
 ---
 
-## 🤖 **How the AI Integration Works**
+## 🔑 Environment Variables
 
-### **Gemini 2.5 Flash - Document Intelligence** ⭐ *NEW*
+### Backend `.env`
 
-The project now uses Gemini 2.5 Flash's native Document Intelligence API to process PDFs directly without additional PDF parsing libraries:
+```env
+# ==================== DATABASE ====================
+MONGO_DB_URL=mongodb+srv://username:password@cluster.mongodb.net/ai_study_assistant?retryWrites=true&w=majority
 
-```javascript
-// Backend implementation
-const fs = require('fs');
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+# ==================== SERVER ====================
+PORT=5000
+NODE_ENV=development
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+# ==================== AUTHENTICATION ====================
+JWT_SECRET_KEY=your_super_secret_jwt_key_minimum_32_characters_long
 
-// Upload PDF to Gemini
-const filePart = {
-  inlineData: {
-    data: Buffer.from(fs.readFileSync(pdfPath)).toString("base64"),
-    mimeType: "application/pdf",
-  },
-};
+# ==================== GOOGLE GENERATIVE AI ====================
+GEMINI_API_KEY=AIzaSy...your_complete_google_api_key...
 
-// Generate response with PDF content
-const result = await model.generateContent([
-  "Summarize this PDF document:",
-  filePart
-]);
+# ==================== CLOUDINARY ====================
+CLOUDINARY_NAME=your_cloudinary_account_name
+CLOUDINARY_API_KEY=1234567890123456789
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret_key
 ```
 
-### **What is LangChain?**
-LangChain is a framework for building applications with Large Language Models (LLMs). It provides tools to:
-- Connect to OpenAI and other LLMs
-- Process documents and text
-- Create intelligent chains of operations
-- Build conversational systems
+### Frontend `.env`
 
-### **Key Concepts**
-
-#### **1. Chains**
-A sequence of operations connected together:
-
-```python
-# Example: Summarize → Translate → Format
-chain = summary_chain | translate_chain | format_chain
-result = chain.invoke({"input": "long text"})
+```env
+VITE_API_URL=http://localhost:5000
 ```
 
-#### **2. Prompts**
-Instructions to the AI model:
+### Getting API Keys
 
-```python
-from langchain.prompts import PromptTemplate
+**MongoDB:**
+1. Visit [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+2. Create free cluster
+3. Get connection string from "Connect" button
 
-prompt = PromptTemplate(
-    input_variables=["text", "style"],
-    template="Summarize this text in {style} style:\n{text}"
-)
-```
+**Gemini API:**
+1. Visit [Google AI Studio](https://ai.google.dev)
+2. Click "Get API Key"
+3. Copy key directly
 
-#### **3. Memory**
-Remembering conversation history:
-
-```python
-from langchain.memory import ConversationBufferMemory
-
-memory = ConversationBufferMemory()
-# Store conversation history for context
-```
-
-#### **4. Document Processing**
-Loading and splitting documents:
-
-```python
-from langchain.document_loaders import TextLoader
-from langchain.text_splitter import CharacterTextSplitter
-
-loader = TextLoader("study_material.txt")
-docs = loader.load()
-splitter = CharacterTextSplitter(chunk_size=1000)
-texts = splitter.split_documents(docs)
-```
+**Cloudinary:**
+1. Sign up at [Cloudinary](https://cloudinary.com)
+2. Navigate to Settings → API Keys
+3. Copy Name, Key, and Secret
 
 ---
 
-## 📡 **API Endpoints**
+## 📡 API Documentation
 
-### **Authentication Endpoints** ⭐ *NEW*
+### Authentication Endpoints
+
+#### Register User
 
 ```http
-POST /api/auth/register
+POST /auth/register
 Content-Type: application/json
 
 {
   "name": "John Doe",
   "email": "john@example.com",
-  "password": "secure_password"
+  "password": "password123"
 }
 ```
 
+**Response (201):**
+```json
+"Token created:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+```
+
+---
+
+#### Login User
+
 ```http
-POST /api/auth/login
+POST /auth/login
 Content-Type: application/json
 
 {
   "email": "john@example.com",
-  "password": "secure_password"
+  "password": "password123"
 }
 ```
 
+**Response (200):**
+```json
+"Token created:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+```
+
+---
+
+#### Logout User
+
 ```http
-POST /api/auth/logout
+POST /auth/logout
 Authorization: Bearer <token>
 ```
 
-### **PDF Upload & Query Endpoints** ⭐ *NEW*
+**Response (200):**
+```json
+"Logout as the token is added to the Black List"
+```
+
+---
+
+### PDF Endpoints
+
+#### Upload PDF
 
 ```http
-POST /api/pdf/upload
+POST /pdf/upload
 Content-Type: multipart/form-data
 Authorization: Bearer <token>
 
-{
-  "file": <PDF file>
-}
+FormData:
+  - file: <PDF file>
+  - title: "Study Guide"
 ```
 
-**Response:**
+**Response (201):**
 ```json
 {
   "success": true,
-  "pdfId": "507f1f77bcf86cd799439011",
-  "filename": "study_guide.pdf",
-  "uploadedAt": "2026-06-02T10:30:00Z",
-  "owner": "user_id"
+  "pdf": {
+    "_id": "507f1f77bcf86cd799439011",
+    "title": "Study Guide",
+    "pdfUrl": "https://res.cloudinary.com/.../...",
+    "fileSize": 2048576,
+    "owner": "507f1f77bcf86cd799439010"
+  }
 }
 ```
 
+---
+
+#### Get User's PDFs
+
 ```http
-POST /api/pdf/summarize
+GET /pdf/getPdfs
+Authorization: Bearer <token>
+```
+
+**Response (200):**
+```json
+[
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "title": "JavaScript Guide",
+    "pdfUrl": "https://res.cloudinary.com/.../...",
+    "fileSize": 2048576,
+    "createdAt": "2026-06-09T11:00:00Z"
+  }
+]
+```
+
+---
+
+#### Delete PDF
+
+```http
+DELETE /pdf/deletePdf/:id
+Authorization: Bearer <token>
+```
+
+**Response (200):**
+```json
+{
+  "message": "PDF deleted"
+}
+```
+
+---
+
+### AI Endpoints
+
+#### Summarize PDF
+
+```http
+POST /assistantPractice/summarize
 Content-Type: application/json
 Authorization: Bearer <token>
 
 {
-  "pdfId": "507f1f77bcf86cd799439011",
-  "summaryLength": "medium"
+  "pdfUrl": "https://res.cloudinary.com/.../..."
 }
 ```
 
-```http
-POST /api/pdf/generate-quiz
-Content-Type: application/json
-Authorization: Bearer <token>
-
-{
-  "pdfId": "507f1f77bcf86cd799439011",
-  "numberOfQuestions": 10
-}
-```
-
-### **Summarization Endpoint**
-```http
-POST /api/summarize
-Content-Type: application/json
-Authorization: Bearer <token>
-
-{
-  "content": "Long text to summarize...",
-  "length": "medium",  // short, medium, long
-  "language": "English"
-}
-```
-
-**Response:**
+**Response (200):**
 ```json
 {
   "success": true,
-  "summary": "Concise summary of the content...",
-  "originalLength": 2500,
-  "summaryLength": 450,
-  "keyPoints": ["Point 1", "Point 2", "Point 3"]
+  "summary": "This document discusses..."
 }
 ```
 
-### **Q&A Endpoint**
+---
+
+#### Generate Quiz
+
 ```http
-POST /api/qa
+POST /assistantPractice/generateQuiz
 Content-Type: application/json
 Authorization: Bearer <token>
 
 {
-  "question": "What is photosynthesis?",
-  "context": "Science",
-  "difficulty": "intermediate"
+  "pdfUrl": "https://res.cloudinary.com/.../...."
 }
 ```
 
-**Response:**
+**Response (200):**
 ```json
 {
   "success": true,
-  "question": "What is photosynthesis?",
-  "answer": "Photosynthesis is the process by which...",
-  "sources": ["textbook_ch3", "wikipedia"],
-  "relatedTopics": ["Cellular respiration", "Chloroplasts"]
+  "quiz": {
+    "questions": [
+      {
+        "question": "What is...",
+        "type": "mcq",
+        "options": ["A", "B", "C", "D"]
+      }
+    ]
+  }
 }
 ```
 
-### **Learning Progress Endpoint**
-```http
-GET /api/progress
-Authorization: Bearer <token>
-```
-
 ---
 
-## 🎓 **Learning AI Integration**
+## 🛠️ Challenges & Solutions
 
-### **What You'll Learn**
+### Challenge 1: PDF Parsing Issues
 
-✅ **Gemini 2.5 Flash Document Intelligence** ⭐ *NEW*
-- Direct PDF processing
-- Native document understanding
-- Advanced AI reasoning
+**Problem:**
+- Traditional PDF libraries struggle with scanned/image-based PDFs
+- Complex layouts and special characters cause failures
 
-✅ **LangChain Framework**
-- Document loading and processing
-- Creating prompts and chains
-- Vector embeddings basics
-- RAG (Retrieval Augmented Generation)
-
-✅ **OpenAI API Integration**
-- API authentication
-- Making API calls
-- Handling responses
-- Error management
-
-✅ **Authentication & Security**
-- JWT token implementation
-- Password hashing
-- Token blacklisting
-- Protected routes
-
-✅ **File Upload & Cloud Storage**
-- Multer middleware setup
-- Cloudinary integration
-- File validation
-
-✅ **AI in Web Applications**
-- Combining frontend + AI
-- Real-time processing
-- Streaming responses
-- Cost optimization
-
-✅ **Full-Stack Development**
-- Building complete application
-- User authentication
-- Data persistence
-- Deployment
-
----
-
-## 🔄 **How It Works - Step by Step**
-
-### **PDF Processing Flow** ⭐ *NEW*
-
-```
-1. User uploads PDF
-   └─ Frontend sends to backend via multipart form
-
-2. Backend receives PDF
-   └─ Validates file type and size
-   └─ Saves to Cloudinary
-
-3. Gemini 2.5 Flash processes PDF
-   └─ Document Intelligence API reads content
-   └─ Extracts structure and text
-   └─ Understands semantic meaning
-
-4. LangChain processes extracted content
-   └─ Splits into chunks
-   └─ Extracts key information
-
-5. AI generates summary/quiz
-   └─ Uses Gemini API
-   └─ Applies formatting
-
-6. Response returned
-   └─ PDF stored in database
-   └─ Summary/Quiz sent to frontend
-
-7. Frontend displays result
-   └─ Shows summary to user
-   └─ Displays quiz questions
-   └─ Allows download/export
-```
-
-### **Summarization Flow**
-
-```
-1. User submits text or PDF
-   └─ Frontend sends to backend via API
-
-2. Backend receives request
-   └─ Validates input and user
-
-3. LangChain processes text
-   └─ Splits into chunks
-   └─ Extracts key information
-
-4. OpenAI API generates summary
-   └─ Uses GPT model
-   └─ Applies temperature settings
-
-5. Response returned
-   └─ Summary sent to frontend
-   └─ Stored in database
-
-6. Frontend displays result
-   └─ Shows summary to user
-   └─ Allows download/export
-```
-
-### **Q&A Flow**
-
-```
-1. User asks question
-   └─ Frontend sends question to backend
-
-2. Backend processes question
-   └─ Checks for duplicate questions
-   └─ Searches knowledge base (vector store)
-
-3. LangChain creates context
-   └─ Retrieves relevant documents
-   └─ Builds context for answer
-
-4. OpenAI API generates answer
-   └─ Uses context + question
-   └─ Generates detailed response
-
-5. Response returned
-   └─ Answer sent to frontend
-   └─ Session stored for learning analytics
-
-6. Frontend displays answer
-   └─ Shows with citations
-   └─ Suggests related topics
-```
-
----
-
-## 💡 **Key Implementation Details**
-
-### **Using Gemini 2.5 Flash for PDFs** ⭐ *NEW*
+**Solution:**
+- Integrated **Gemini 2.5 Flash Document Intelligence API**
+- Native PDF processing without external parsers
+- Handles both text and image-based PDFs accurately
 
 ```javascript
-// extractText.js - Direct PDF processing with Gemini
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
-async function extractAndSummarize(pdfPath) {
-  const fs = require('fs');
-  
-  const filePart = {
-    inlineData: {
-      data: Buffer.from(fs.readFileSync(pdfPath)).toString("base64"),
-      mimeType: "application/pdf",
-    },
-  };
-
-  const result = await model.generateContent([
-    "Extract all text and provide a comprehensive summary of this PDF.",
-    filePart
-  ]);
-
-  return result.response.text();
-}
-```
-
-### **Using LangChain with OpenAI**
-
-```javascript
-// Backend example using Node.js LangChain
-const { OpenAI } = require("langchain/llms/openai");
-const { PromptTemplate } = require("langchain/prompts");
-const { LLMChain } = require("langchain/chains");
-
-// Initialize LLM
-const model = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  temperature: 0.7
-});
-
-// Create prompt template
-const template = `Summarize this content in {style} style:
-{content}
-Summary:`;
-
-const prompt = new PromptTemplate({
-  inputVariables: ["content", "style"],
-  template
-});
-
-// Create chain
-const chain = new LLMChain({ llm: model, prompt });
-
-// Use chain
-const result = await chain.call({
-  content: userContent,
-  style: "concise"
-});
-```
-
-### **Vector Embeddings for Search**
-
-```javascript
-// Convert text to embeddings for semantic search
-const { OpenAIEmbeddings } = require("langchain/embeddings/openai");
-const { MemoryVectorStore } = require("langchain/vectorstores/memory");
-
-const embeddings = new OpenAIEmbeddings();
-const vectorStore = new MemoryVectorStore(embeddings);
-
-// Store documents
-await vectorStore.addDocuments(documents);
-
-// Search
-const results = await vectorStore.similaritySearch("user query");
+// Gemini native processing
+const genAI = new GoogleGenerativeAI(apiKey);
+const result = await model.generateContent([
+  { inlineData: { data: base64, mimeType: 'application/pdf' } },
+  "Extract text"
+]);
 ```
 
 ---
 
-## 🎯 **Current Development Status**
+### Challenge 2: Context Understanding
 
-### **Completed Features** ✅
-- ✅ Project structure set up
-- ✅ Backend scaffolding with Express
-- ✅ Frontend components with React & Vite
-- ✅ API route structure
-- ✅ User authentication (Login/Register)
-- ✅ JWT token implementation
-- ✅ Logout functionality with token blacklisting
-- ✅ PDF upload with Cloudinary integration
-- ✅ Gemini 2.5 Flash integration for PDF processing
-- ✅ PDF summarization feature
-- ✅ Quiz generation from PDFs
-- ✅ LangChain integration
-- ✅ OpenAI API connection
-- ✅ CORS support
-- ✅ Error handling improvements
-- ✅ React routing and navigation
+**Problem:**
+- Direct LLM responses often hallucinate
+- No grounding in actual document content
 
-### **In Progress** 🔄
-- Q&A system enhancement
-- Advanced PDF features
-- Learning analytics
-- Dashboard improvements
-
-### **Planned** 📋
-- Advanced learning paths
-- Analytics dashboard with visualizations
-- Export functionality (PDF, DOCX)
-- Mobile-responsive design improvements
-- Real-time collaboration features
-- Voice input for questions
-- Multiple AI model support
-- Offline mode
-- Mobile app version
-- Performance optimization
+**Solution:**
+- Implemented **RAG Pipeline** with vector embeddings
+- Semantic search for relevant context
+- Augment prompts with retrieved chunks
+- Ground answers in actual document content
 
 ---
 
-## 📚 **Resources for Learning**
+### Challenge 3: API Cost Optimization
 
-**Gemini AI** ⭐ *NEW*
-- [Google Generative AI Documentation](https://ai.google.dev)
-- [Gemini API Reference](https://ai.google.dev/api/rest)
-- [Document Intelligence Guide](https://ai.google.dev/docs)
+**Problem:**
+- Processing large PDFs multiple times increases costs
 
-**LangChain**
-- [Official Documentation](https://python.langchain.com)
-- [GitHub Repository](https://github.com/langchain-ai/langchain)
-- [LangChain JS](https://js.langchain.com) - For Node.js
-
-**OpenAI**
-- [API Documentation](https://platform.openai.com/docs)
-- [API Reference](https://platform.openai.com/docs/api-reference)
-- [Best Practices](https://platform.openai.com/docs/guides/safety-best-practices)
-
-**AI/ML Concepts**
-- [Vector Embeddings Explained](https://www.openai.com/blog/new-and-improved-embedding-model/)
-- [RAG Explained](https://towardsdatascience.com/retrieval-augmented-generation-rag-explained-99ed46dd8629)
-- [Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering)
+**Solution:**
+- Cache processed PDFs in MongoDB
+- Reuse vector stores for multiple queries
+- Use Gemini 2.5 Flash (faster, cheaper)
 
 ---
 
-## 🧪 **Testing the Features**
+### Challenge 4: File Upload Security
 
-### **Test User Authentication** ⭐ *NEW*
-1. Go to frontend Login page
-2. Register a new account with email and password
-3. Login with credentials
-4. Verify dashboard loads
-5. Click Logout to test token blacklisting
+**Problem:**
+- Need to validate file types and prevent malicious uploads
 
-### **Test PDF Upload & Summarization** ⭐ *NEW*
-1. Go to PDF Query section
-2. Upload a PDF document
-3. Click "Summarize PDF"
-4. Verify summary is generated by Gemini
-5. Check summary accuracy
-
-### **Test PDF Quiz Generation** ⭐ *NEW*
-1. Upload a PDF document
-2. Click "Generate Quiz"
-3. Answer quiz questions
-4. View results and explanations
-
-### **Test Summarization**
-1. Go to frontend
-2. Click "Summarize"
-3. Paste sample text:
-   ```
-   "Photosynthesis is a process used by plants and other organisms to convert 
-   light energy into chemical energy that can later be released to fuel the 
-   plant's activities. This chemical energy is stored in carbohydrate molecules..."
-   ```
-4. Select "short" length
-5. Click Summarize
-6. Verify concise summary is returned
-
-### **Test Q&A**
-1. Click "Ask Question"
-2. Enter: "What is machine learning?"
-3. Select subject: "Technology"
-4. Click Ask
-5. Verify detailed answer is returned
+**Solution:**
+- MIME type validation via Multer
+- File size limits (20MB)
+- Stream uploads to Cloudinary
+- Secure metadata tracking
 
 ---
 
-## 🐛 **Troubleshooting**
+### Challenge 5: Scalability
 
-### **Gemini API Error** ⭐ *NEW*
-```
-Error: 403 Forbidden / API Key Invalid
-Fix: Check GOOGLE_API_KEY in .env
-     Verify API key at ai.google.dev
-     Ensure API key has required permissions
-     Check quota limits
-```
+**Problem:**
+- Need to handle growing user base and concurrent requests
 
-### **PDF Upload Error** ⭐ *NEW*
-```
-Error: File upload failed
-Fix: Check Cloudinary credentials
-     Verify CLOUDINARY_NAME, API_KEY, API_SECRET
-     Check file size limits (usually 100MB)
-     Ensure file is valid PDF
-```
+**Solution:**
+- MongoDB Atlas for auto-scaling
+- Cloudinary CDN for file delivery
+- Stateless JWT authentication
+- Batch processing for embeddings
 
-### **OpenAI API Error**
-```
-Error: 401 Unauthorized
-Fix: Check OPENAI_API_KEY in .env
-     Verify API key is valid at platform.openai.com
-     Ensure API key has proper permissions
-```
+---
 
-### **LangChain Import Error**
-```
-Error: Cannot find module 'langchain'
-Fix: npm install langchain
-     For specific integrations: npm install @langchain/openai
-```
+## 🔮 Future Enhancements
 
-### **MongoDB Connection Error**
+### 1. 📚 Multi-Document RAG
+- Query across multiple PDFs simultaneously
+- Unified vector store with cross-document retrieval
+- Compare and synthesize information from multiple sources
+
+### 2. 🎬 Video Lesson Integration
+- Process YouTube videos and lectures
+- Speech-to-text + transcript processing
+- Expand beyond PDFs to multimedia
+
+### 3. 🗣️ Voice Q&A Assistant
+- Ask questions via voice
+- Speech recognition → Text processing
+- Hands-free learning experience
+
+### 4. 📊 Advanced Analytics Dashboard
+- Detailed learning analytics
+- Track progress and weak areas
+- Data-driven learning optimization
+
+### 5. 🎮 Gamification
+- Leaderboards, achievements, streaks
+- Point system and badges
+- Increased engagement and motivation
+
+### 6. 💬 Persistent Chat History
+- Save conversation history
+- Review previous discussions
+- Track learning progress over time
+
+### 7. 🌐 Multi-Language Support
+- Support 10+ languages
+- Translation API integration
+- Global accessibility
+
+### 8. 🤝 Collaborative Learning
+- Group study features
+- Real-time document sharing
+- Shared Q&A and discussion
+
+### 9. 📱 Mobile App (React Native)
+- iOS/Android native apps
+- On-the-go learning
+- Offline support
+
+### 10. 🔄 Offline Mode
+- Work without internet
+- Local vector store
+- Automatic sync when online
+
+### 11. 🎓 Spaced Repetition Algorithm
+- Optimal review scheduling
+- SM-2 algorithm for flashcards
+- Scientific learning approach
+
+### 12. 🏆 Certification Paths
+- Complete learning modules
+- Structured courses and assessments
+- Credible learning outcomes
+
+---
+
+## 💡 Tips for Best Results
+
+### PDF Upload Tips
+- ✅ Use clear, high-quality PDFs
+- ✅ Ensure text is searchable
+- ✅ Organize content logically
+- ❌ Avoid extremely large files (>20MB)
+- ❌ Don't upload corrupted PDFs
+
+### Q&A Tips
+- ✅ Ask specific, focused questions
+- ✅ Provide subject context
+- ✅ Use clear, academic language
+- ❌ Avoid multi-part questions
+
+### Summarization Tips
+- ✅ Choose appropriate length
+- ✅ Review key points generated
+- ✅ Verify details in original
+- ❌ Don't rely solely on summaries
+
+---
+
+## 🐛 Troubleshooting
+
+### Backend Connection Issues
+
 ```
 Error: Cannot connect to MongoDB
-Fix: Check MONGODB_URI in .env
-     Verify IP whitelist in MongoDB Atlas
-     Ensure network access is enabled
+Fix:
+- Verify MONGO_DB_URL in .env
+- Check IP whitelist in MongoDB Atlas
+- Ensure network access is enabled
 ```
 
-### **CORS Error** ⭐ *NEW*
+### Gemini API Errors
+
+```
+Error: 403 Forbidden / API Key Invalid
+Fix:
+- Verify GEMINI_API_KEY in .env
+- Check API key at ai.google.dev
+- Ensure API is enabled
+- Check quota limits
+```
+
+### PDF Upload Fails
+
+```
+Error: File size too large
+Fix:
+- Keep PDFs under 20MB
+- Compress if needed
+- Check file isn't corrupted
+```
+
+### Frontend Can't Connect to Backend
+
 ```
 Error: CORS policy blocked request
-Fix: Ensure CORS middleware is configured
-     Check frontend URL matches backend CORS settings
-     Verify credentials are included in requests
+Fix:
+- Ensure backend runs on port 5000
+- Check VITE_API_URL in .env
+- Verify CORS configuration
+- Clear browser cache
 ```
 
 ---
 
-## 📈 **Performance Optimization**
+## 📚 Learning Resources
 
-### **Reduce API Costs**
-- Cache frequently asked questions
-- Implement response buffering
-- Use cheaper models for simple tasks
-- Batch requests when possible
-- Reuse PDF summaries when available
+### Documentation
+- [LangChain JS](https://js.langchain.com) - AI orchestration
+- [Gemini API Docs](https://ai.google.dev/docs) - Document intelligence
+- [MongoDB Docs](https://docs.mongodb.com) - Database
+- [Express.js Guide](https://expressjs.com) - Backend framework
 
-### **Improve Response Time**
-- Implement streaming responses
-- Cache embeddings
-- Use connection pooling
-- Optimize prompt length
-- Store PDF processing results
-
-### **Scalability Considerations**
-- Use Redis for caching
-- Implement rate limiting
-- Database indexing
-- Load balancing
-- CDN for asset delivery
+### Tutorials
+- [RAG Explained](https://towardsdatascience.com/retrieval-augmented-generation-rag-explained-99ed46dd8629)
+- [Vector Embeddings](https://www.openai.com/blog/new-and-improved-embedding-model/)
+- [JWT Authentication](https://auth0.com/blog/get-started-with-json-web-tokens/)
 
 ---
 
-## 🤝 **Contributing**
+## 🤝 Contributing
 
-This is a learning project, open to improvements!
+Contributions are welcome! Please follow these steps:
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your improvements
-4. Submit a pull request
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
+3. **Commit** changes (`git commit -m 'Add AmazingFeature'`)
+4. **Push** to branch (`git push origin feature/AmazingFeature`)
+5. **Open** a Pull Request
 
----
-
-## 📝 **What I'm Learning**
-
-✅ **Advanced AI Integration** - Gemini 2.5 Flash & LangChain  
-✅ **Document Processing** - PDF intelligence and extraction  
-✅ **API Integration** - Working with multiple AI providers  
-✅ **Full-Stack Development** - Combining all layers  
-✅ **Modern Web Technologies** - React, Vite, Node.js  
-✅ **Authentication & Security** - JWT and token management  
-✅ **Cloud Services** - Cloudinary and Google AI  
-✅ **Problem Solving** - Building real solutions  
+### Contribution Guidelines
+- Follow existing code style
+- Add comments for complex logic
+- Test before submitting PR
+- Update README if needed
+- Be respectful and constructive
 
 ---
 
-## 🔮 **Future Enhancements**
+## 📝 License
 
-- [ ] Voice input for questions
-- [ ] Real-time collaborative study sessions
-- [ ] Gamified learning with points and achievements
-- [ ] Spaced repetition algorithm for flashcards
-- [ ] Multiple AI model support (Claude, Mistral, etc.)
-- [ ] Offline mode with sync
-- [ ] Mobile app version (React Native)
-- [ ] Interactive visualization of complex topics
-- [ ] Study group features
-- [ ] Performance analytics dashboard
-- [ ] Browser extension for web content summarization
+This project is licensed under the **MIT License** - see the LICENSE file for details.
+
+MIT License - Free for personal and commercial use.
 
 ---
 
-## 📄 **License**
+## 👨‍💻 Author
 
-MIT License - Open for learning and modification
+**Sushanth Sourya**
+
+- 🔗 [GitHub Profile](https://github.com/Sushanth226)
+- 💼 Building AI-powered educational tools
+- 🚀 Full-stack developer, AI enthusiast
+- 📧 For inquiries, open an issue on GitHub
+
+---
+
+## 🙏 Acknowledgments
+
+- **Gemini 2.5 Flash** for advanced document processing
+- **LangChain** for seamless AI orchestration
+- **React** and **Node.js** communities
+- Students and educators using this platform
 
 ---
 
 <div align="center">
 
-### ⭐ If you find this helpful, please star the repository!
+### ⭐ If you find this project helpful, please consider giving it a star!
 
-**[View on GitHub](https://github.com/Sushanth226/AI-Study-Assistent)**
+**Made with ❤️ for students, teachers, and lifelong learners**
 
-Made with ❤️ by Suru Sushanth Sourya
+![Last Updated](https://img.shields.io/badge/Last%20Updated-June%202026-blue?style=flat-square)
+![Repository Status](https://img.shields.io/badge/Repository-Active-success?style=flat-square)
 
-Still Learning & Exploring AI! 🚀
-
-**Latest Update**: June 2, 2026 - Gemini 2.5 Flash PDF Intelligence Integration
+**[View on GitHub](https://github.com/Sushanth226/AI-Study-Assistent)** • **[Report Issue](https://github.com/Sushanth226/AI-Study-Assistent/issues)** • **[Suggest Feature](https://github.com/Sushanth226/AI-Study-Assistent/discussions)**
 
 </div>
