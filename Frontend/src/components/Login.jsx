@@ -6,6 +6,7 @@ function Login(){
     const navigate = useNavigate();
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
+    
     const sendDetails=async(e)=>{
         e.preventDefault();
         if(!email && !password ){
@@ -17,7 +18,6 @@ function Login(){
                     password
                 }, { withCredentials: true })
                 console.log("Login Completed")
-                // Need to import useNavigate for this
                 navigate("/dashboard");
             }catch(error){
                 console.log(error);
@@ -26,20 +26,43 @@ function Login(){
                 alert(errorMsg);
             }
         }
-        
     }
+    
     return(
-    <>
-    <h1>Login</h1>
-    <form onSubmit={sendDetails}>
-        <input type="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email"/>
-        <input type="text" value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password..."/>
-        <button type="submit">Login</button>
-    </form>
-    <br/>
-    <p>If don't have a account</p>
-    <Link to="/register">Register</Link>
-    </>
-)
+        <div className="flex-center animate-fade-in">
+            <div className="auth-card text-center">
+                <h1 className="mb-2">Welcome Back</h1>
+                <p className="subheading mb-6">Log in to your account</p>
+                
+                <form onSubmit={sendDetails}>
+                    <div className="form-group">
+                        <label className="form-label">Email Address</label>
+                        <input 
+                            className="form-control"
+                            type="email" 
+                            value={email} 
+                            onChange={(e)=>{setEmail(e.target.value)}} 
+                            placeholder="you@example.com"
+                        />
+                    </div>
+                    <div className="form-group mb-6">
+                        <label className="form-label">Password</label>
+                        <input 
+                            className="form-control"
+                            type="password" 
+                            value={password} 
+                            onChange={(e)=>{setPassword(e.target.value)}} 
+                            placeholder="••••••••"
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-primary btn-lg w-full mb-4">Login</button>
+                </form>
+                
+                <p className="caption">
+                    Don't have an account? <Link to="/register" className="font-medium" style={{color: 'var(--color-primary)'}}>Sign up</Link>
+                </p>
+            </div>
+        </div>
+    )
 }
 export default Login;

@@ -4,6 +4,7 @@ import List from "./List";
 import Logout from "./Logout";
 function Dashboard(){
     const [pdf,setPdf]=useState(null);
+    const [refreshList, setRefreshList] = useState(0);
     
     const uploadPdf=(e)=>{
         if (e.target.files && e.target.files[0]) {
@@ -19,7 +20,9 @@ function Dashboard(){
         try
         {
             const formData = new FormData();
-            formData.append("pdf", pdf);
+            // Sanitize filename to prevent Cloudinary public_id errors with special characters
+            const sanitizedName = pdf.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+            formData.append("pdf", pdf, sanitizedName);
             formData.append("title", pdf.name); // The backend Pdf schema requires a title
             
             const pdfSubmit=await axios.post("http://localhost:5000/pdf/upload", formData, { 
@@ -28,6 +31,7 @@ function Dashboard(){
             });
             console.log(`The pdf submitted ${pdfSubmit}`);
             alert("PDF submitted successfully");
+            setRefreshList(prev => prev + 1);
         }
         catch(error){
             console.error(error);
@@ -37,20 +41,45 @@ function Dashboard(){
         }
     }
     return(
-        <>
-        <h1>DashBoard</h1>
-        <div className="logout">
-          <Logout/>
-        </div>
-        <div className="logout">
+        <div className="app-container animate-fade-in">
+            <header className="app-header">
+                <h1>Dashboard</h1>
+                <Logout/>
+            </header>
+            
+            <main className="container main-content">
+                <section className="mb-8">
+                    <div className="card text-center">
+                        <h2 className="mb-4">Upload Study Material</h2>
+                        <div className="upload-area mb-4">
+                            <input 
+                                type="file" 
+                                accept="application/pdf" 
+                                onChange={uploadPdf}
+                                className="upload-input-overlay"
+                                title="Click to upload a PDF"
+                            />
+                            <p className="subheading mb-2">Drag and drop your PDF here, or click to browse</p>
+                            <p className="caption" style={{color: pdf ? 'var(--color-primary)' : ''}}>
+                                {pdf ? `Selected: ${pdf.name}` : "Supports .pdf files"}
+                            </p>
+                        </div>
+                        <button 
+                            onClick={submitPdf} 
+                            className="btn btn-primary btn-lg" 
+                            disabled={!pdf}
+                        >
+                            Process Document
+                        </button>
+                    </div>
+                </section>
 
+                <section>
+                    <h2 className="mb-4">Your Documents</h2>
+                    <List refreshTrigger={refreshList}/>
+                </section>
+            </main>
         </div>
-        <div className="pdfUpload">
-            <input type="file" accept="application/pdf" placeholder="Upload a pdf" onChange={uploadPdf}/>
-            <button onClick={submitPdf}>Submit</button>
-        </div>
-        <List/>
-        </>
     )
 }
 export default Dashboard;

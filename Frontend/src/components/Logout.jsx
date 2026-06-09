@@ -28,11 +28,9 @@ function Logout() {
   }
 
   return (
-    <>
-      <button onClick={handleLogout} style={{ cursor: "pointer" }}>
-        Logout
-      </button>
-    </>
+    <button onClick={handleLogout} className="btn btn-outline" style={{ cursor: "pointer" }}>
+      Logout
+    </button>
   )
 }
 

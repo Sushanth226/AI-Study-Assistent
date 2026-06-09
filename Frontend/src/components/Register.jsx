@@ -7,6 +7,7 @@ function Register(){
     const [name,setName]=useState("");
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
+    
     const sendDetails=async(e)=>{
         e.preventDefault();
         if(!email && !name && !password ){
@@ -27,21 +28,53 @@ function Register(){
                 alert(errorMsg);
             }
         }
-        
     }
+    
     return(
-    <>
-    <h1>Register</h1>
-    <form onSubmit={sendDetails}>
-        <input type="text" value={name} onChange={(e)=>{setName(e.target.value)}} placeholder="Name"/>
-        <input type="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email"/>
-        <input type="text" value={password} onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password..."/>
-        <button type="submit">Register</button>
-    </form>
-    <br/>
-    <p>If already have a account</p>
-    <Link to="/login">Login</Link>
-    </>
+        <div className="flex-center animate-fade-in">
+            <div className="auth-card text-center">
+                <h1 className="mb-2">Create Account</h1>
+                <p className="subheading mb-6">Join your AI Study Assistant</p>
+                
+                <form onSubmit={sendDetails}>
+                    <div className="form-group">
+                        <label className="form-label">Full Name</label>
+                        <input 
+                            className="form-control"
+                            type="text" 
+                            value={name} 
+                            onChange={(e)=>{setName(e.target.value)}} 
+                            placeholder="John Doe"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label">Email Address</label>
+                        <input 
+                            className="form-control"
+                            type="email" 
+                            value={email} 
+                            onChange={(e)=>{setEmail(e.target.value)}} 
+                            placeholder="you@example.com"
+                        />
+                    </div>
+                    <div className="form-group mb-6">
+                        <label className="form-label">Password</label>
+                        <input 
+                            className="form-control"
+                            type="password" 
+                            value={password} 
+                            onChange={(e)=>{setPassword(e.target.value)}} 
+                            placeholder="••••••••"
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-primary btn-lg w-full mb-4">Register</button>
+                </form>
+                
+                <p className="caption">
+                    Already have an account? <Link to="/login" className="font-medium" style={{color: 'var(--color-primary)'}}>Log in</Link>
+                </p>
+            </div>
+        </div>
     )
 }
 export default Register;
